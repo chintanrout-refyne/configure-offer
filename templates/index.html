@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Offer Configuration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Offer Configuration</h1>
+        
+        <form action="/submit" method="post">
+            <label for="bearerToken">Bearer Token:</label>
+            <input type="text" name="bearerToken" id="bearerToken" required><br>
+            
+            <label for="name">Name of the offer:</label>
+            <input type="text" name="name" id="name" required><br>
+            
+            <label for="type">Type of the offer:</label>
+            <select name="type" id="type">
+                <option value="SET_PROCESSING_FEE">SET_PROCESSING_FEE</option>
+                <option value="PERCENTAGE_DISCOUNT">PERCENTAGE_DISCOUNT</option>
+            </select><br>
+            
+            <label for="value">Value of the processing fee:</label>
+            <input type="number" name="value" id="value" required><br>
+            
+            <label for="minAmount">Minimum transaction amount:</label>
+            <input type="number" name="minAmount" id="minAmount" required><br>
+            
+            <label for="maxAmount">Maximum transaction amount:</label>
+            <input type="number" name="maxAmount" id="maxAmount" required><br>
+            
+            <label for="jsonRules">JSON Rules:</label>
+            <div id="jsonRulesContainer">
+                <div>
+                    <select name="fact_0">
+                        <option value="EMPLOYER_ID">EMPLOYER_ID</option>
+                        <option value="USER_STATUS">USER_STATUS</option>
+                        <option value="USER_AGE">USER_AGE</option>
+                        <option value="USER_EMAIL">USER_EMAIL</option>
+                        <option value="PREFERRED_LANGUAGE">PREFERRED_LANGUAGE</option>
+                        <option value="USER_WHATSAPP_OPT_IN">USER_WHATSAPP_OPT_IN</option>
+                        <option value="USER_MOBILE_NUMBER">USER_MOBILE_NUMBER</option>
+                        <option value="USER_MOBILE_EXISTS">USER_MOBILE_EXISTS</option>
+                        <option value="USER_MOBILE_VERIFIED">USER_MOBILE_VERIFIED</option>
+                        <option value="USER_ACCEPTED_TERMS_AND_CONDITIONS">USER_ACCEPTED_TERMS_AND_CONDITIONS</option>
+                        <option value="USER_PAN_EXISTS">USER_PAN_EXISTS</option>
+                        <option value="USER_PAN_FRONT_DOCUMENT_EXISTS">USER_PAN_FRONT_DOCUMENT_EXISTS</option>
+                        <option value="USER_SELFIE_DOCUMENT_EXISTS">USER_SELFIE_DOCUMENT_EXISTS</option>
+                        <option value="USER_BANK_ACCOUNT_DETAILS_EXISTS">USER_BANK_ACCOUNT_DETAILS_EXISTS</option>
+                        <option value="USER_ADDRESS_DETAILS_EXISTS">USER_ADDRESS_DETAILS_EXISTS</option>
+                        <option value="EARNED_SALARY">EARNED_SALARY</option>
+                        <option value="AVAILABLE_SALARY">AVAILABLE_SALARY</option>
+                        <option value="EMPLOYEE_SALARY">EMPLOYEE_SALARY</option>
+                        <option value="WORKER_SALARY_BANK_ACCOUNT_NUMBER">WORKER_SALARY_BANK_ACCOUNT_NUMBER</option>
+                        <option value="WORKER_SALARY_BANK_ACCOUNT_IFSC_CODE">WORKER_SALARY_BANK_ACCOUNT_IFSC_CODE</option>
+                        <option value="PRICING_ID">PRICING_ID</option>
+                        <option value="ACTIVE_SUBSCRIPTION_PLAN_ID">ACTIVE_SUBSCRIPTION_PLAN_ID</option>
+                        <option value="USER_GENDER">USER_GENDER</option>
+                        <option value="USER_ADDRESS_PINCODE">USER_ADDRESS_PINCODE</option>
+                        <option value="USER_SIGNED_UP_AT">USER_SIGNED_UP_AT</option>
+                        <option value="DURATION_FROM_SIGN_UP_IN_MILLISECONDS">DURATION_FROM_SIGN_UP_IN_MILLISECONDS</option>
+                        <option value="REFYNE_VERIFIED_AT">REFYNE_VERIFIED_AT</option>
+                        <option value="SUCCESSFUL_TRANSACTIONS_TOTAL_COUNT">SUCCESSFUL_TRANSACTIONS_TOTAL_COUNT</option>
+                        <option value="LATEST_SUCCESSFUL_TRANSACTION_AMOUNT">LATEST_SUCCESSFUL_TRANSACTION_AMOUNT</option>
+                        <option value="SUCCESSFUL_TRANSACTION_COUNT_IN_CURRENT_ATTENDANCE_CYCLE">SUCCESSFUL_TRANSACTION_COUNT_IN_CURRENT_ATTENDANCE_CYCLE</option>
+                        <option value="SUCCESSFUL_TRANSACTION_MAX_AMOUNT_IN_LAST_THREE_MONTHS">SUCCESSFUL_TRANSACTION_MAX_AMOUNT_IN_LAST_THREE_MONTHS</option>
+                        <option value="SUCCESSFUL_TRANSACTIONS_COUNT_IN_LAST_THIRTY_DAYS">SUCCESSFUL_TRANSACTIONS_COUNT_IN_LAST_THIRTY_DAYS</option>
+                        <option value="SUCCESSFUL_TRANSACTION_COUNT_IN_THE_CURRENT_MONTH">SUCCESSFUL_TRANSACTION_COUNT_IN_THE_CURRENT_MONTH</option>
+                        <option value="USER_ID">USER_ID</option>
+                        <option value="PRINCIPAL_EMPLOYER_ID">PRINCIPAL_EMPLOYER_ID</option>
+                        <option value="USER_REFYNE_VERIFIED_COUNT">USER_REFYNE_VERIFIED_COUNT</option>
+                        <option value="USER_SUPPORT_PHONE_NUMBER">USER_SUPPORT_PHONE_NUMBER</option>
+                        <option value="USER_SUPPORT_EMAIL">USER_SUPPORT_EMAIL</option>
+                        <option value="WITHDRAWAL_MULTIPLES">WITHDRAWAL_MULTIPLES</option>
+                        <option value="MIN_WITHDRAWAL_AMOUNT">MIN_WITHDRAWAL_AMOUNT</option>
+                        <option value="ENACH_REQUIRED">ENACH_REQUIRED</option>
+                        <option value="USER_OPTED_FOR_POCKET_INSURANCE">USER_OPTED_FOR_POCKET_INSURANCE</option>
+                        <option value="USER_POCKET_INSURANCE_EXISTS">USER_POCKET_INSURANCE_EXISTS</option>
+                        <option value="ACTIVE_SUBSCRIPTION_KFS_SIGNED">ACTIVE_SUBSCRIPTION_KFS_SIGNED</option>
+                        <option value="ACTIVE_SUBSCRIPTION_DAYS_LEFT_TO_END">ACTIVE_SUBSCRIPTION_DAYS_LEFT_TO_END</option>
+                    </select>
+                    <select name="operator_0">
+                        <option value="in">in</option>
+                        <option value="equal">equal</option>
+                        <option value="greaterThanInclusive">greaterThanInclusive</option>
+                        <option value="lessThanInclusive">lessThanInclusive</option>
+                    </select>
+                    <input type="number" name="value_0" required>
+                    <button type="button" onclick="addJsonRule()">+</button>
+                </div>
+            </div>
+            <input type="hidden" name="jsonRulesCount" id="jsonRulesCount" value="1">
+            
+            <label for="validTill">Valid till:</label>
+            <input type="datetime-local" name="validTill" id="validTill" required><br>
+            
+            <label for="priority">Priority:</label>
+            <input type="number" name="priority" id="priority" required><br>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function addJsonRule() {
+            var jsonRulesContainer = document.getElementById("jsonRulesContainer");
+            var jsonRulesCountInput = document.getElementById("jsonRulesCount");
+            
+            var ruleDiv = document.createElement("div");
+            
+            var factSelect = document.createElement("select");
+            factSelect.name = "fact_" + jsonRulesCountInput.value;
+            var enums = [
+                "EMPLOYER_ID",
+                "USER_STATUS",
+                "USER_AGE",
+                "USER_EMAIL",
+                "PREFERRED_LANGUAGE",
+                "USER_WHATSAPP_OPT_IN",
+                "USER_MOBILE_NUMBER",
+                "USER_MOBILE_EXISTS",
+                "USER_MOBILE_VERIFIED",
+                "USER_ACCEPTED_TERMS_AND_CONDITIONS",
+                "USER_PAN_EXISTS",
+                "USER_PAN_FRONT_DOCUMENT_EXISTS",
+                "USER_SELFIE_DOCUMENT_EXISTS",
+                "USER_BANK_ACCOUNT_DETAILS_EXISTS",
+                "USER_ADDRESS_DETAILS_EXISTS",
+                "EARNED_SALARY",
+                "AVAILABLE_SALARY",
+                "EMPLOYEE_SALARY",
+                "WORKER_SALARY_BANK_ACCOUNT_NUMBER",
+                "WORKER_SALARY_BANK_ACCOUNT_IFSC_CODE",
+                "PRICING_ID",
+                "ACTIVE_SUBSCRIPTION_PLAN_ID",
+                "USER_GENDER",
+                "USER_ADDRESS_PINCODE",
+                "USER_SIGNED_UP_AT",
+                "DURATION_FROM_SIGN_UP_IN_MILLISECONDS",
+                "REFYNE_VERIFIED_AT",
+                "SUCCESSFUL_TRANSACTIONS_TOTAL_COUNT",
+                "LATEST_SUCCESSFUL_TRANSACTION_AMOUNT",
+                "SUCCESSFUL_TRANSACTION_COUNT_IN_CURRENT_ATTENDANCE_CYCLE",
+                "SUCCESSFUL_TRANSACTION_MAX_AMOUNT_IN_LAST_THREE_MONTHS",
+                "SUCCESSFUL_TRANSACTIONS_COUNT_IN_LAST_THIRTY_DAYS",
+                "SUCCESSFUL_TRANSACTION_COUNT_IN_THE_CURRENT_MONTH",
+                "USER_ID",
+                "PRINCIPAL_EMPLOYER_ID",
+                "USER_REFYNE_VERIFIED_COUNT",
+                "USER_SUPPORT_PHONE_NUMBER",
+                "USER_SUPPORT_EMAIL",
+                "WITHDRAWAL_MULTIPLES",
+                "MIN_WITHDRAWAL_AMOUNT",
+                "ENACH_REQUIRED",
+                "USER_OPTED_FOR_POCKET_INSURANCE",
+                "USER_POCKET_INSURANCE_EXISTS",
+                "ACTIVE_SUBSCRIPTION_KFS_SIGNED",
+                "ACTIVE_SUBSCRIPTION_DAYS_LEFT_TO_END"
+            ];
+            for (var i = 0; i < enums.length; i++) {
+                var option = document.createElement("option");
+                option.value = enums[i];
+                option.text = enums[i];
+                factSelect.appendChild(option);
+            }
+            ruleDiv.appendChild(factSelect);
+            
+            var operatorSelect = document.createElement("select");
+            operatorSelect.name = "operator_" + jsonRulesCountInput.value;
+            var operators = [
+                "in",
+                "equal",
+                "greaterThanInclusive",
+                "lessThanInclusive"
+            ];
+            for (var i = 0; i < operators.length; i++) {
+                var option = document.createElement("option");
+                option.value = operators[i];
+                option.text = operators[i];
+                operatorSelect.appendChild(option);
+            }
+            ruleDiv.appendChild(operatorSelect);
+            
+            var valueInput = document.createElement("input");
+            valueInput.type = "number";
+            valueInput.name = "value_" + jsonRulesCountInput.value;
+            valueInput.required = true;
+            ruleDiv.appendChild(valueInput);
+            
+            var addButton = document.createElement("button");
+            addButton.type = "button";
+            addButton.textContent = "+";
+            addButton.onclick = addJsonRule;
+            ruleDiv.appendChild(addButton);
+            
+            jsonRulesContainer.appendChild(ruleDiv);
+            jsonRulesCountInput.value = parseInt(jsonRulesCountInput.value) + 1;
+        }
+    </script>
+</body>
+</html>
